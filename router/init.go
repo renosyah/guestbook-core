@@ -9,14 +9,17 @@ import (
 
 	"github.com/asaskevich/govalidator"
 	"github.com/pkg/errors"
+	"github.com/renosyah/guestbook-core/api"
 )
 
 var (
-	dbPool *sql.DB
+	dbPool      *sql.DB
+	guestModule *api.GuestModule
 )
 
 func Init(db *sql.DB) {
 	dbPool = db
+	guestModule = api.NewGuestModule(db)
 }
 
 func ParseBodyData(ctx context.Context, r *http.Request, data interface{}) error {

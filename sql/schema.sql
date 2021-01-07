@@ -1,4 +1,14 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
- 
- 
+
+DROP TABLE IF EXISTS "guest" CASCADE;
+
+CREATE TABLE "guest" (
+    id UUID NOT NULL DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL DEFAULT '',
+    email TEXT NOT NULL DEFAULT '',
+    date TIMESTAMP NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()::TIMESTAMPTZ,
+    flag_status INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (id)
+);

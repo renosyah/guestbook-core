@@ -42,6 +42,12 @@ var rootCmd = &cobra.Command{
 		apiRouter.Use(auth.AuthenticationMiddleware)
 
 		// api end point here
+		// guest
+		apiRouter.Handle("/guests", router.HandlerFunc(router.HandlerAddGuest)).Methods(http.MethodPost)
+		apiRouter.Handle("/guests-list", router.HandlerFunc(router.HandlerAllGuest)).Methods(http.MethodPost)
+		apiRouter.Handle("/guests/{id}", router.HandlerFunc(router.HandlerOneGuest)).Methods(http.MethodGet)
+		apiRouter.Handle("/guests/{id}", router.HandlerFunc(router.HandlerUpdateGuest)).Methods(http.MethodPut)
+		apiRouter.Handle("/guests/{id}", router.HandlerFunc(router.HandlerDeleteGuest)).Methods(http.MethodDelete)
 
 		port := viper.GetInt("app.port")
 		p := os.Getenv("PORT")
