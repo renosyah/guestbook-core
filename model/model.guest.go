@@ -10,6 +10,12 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
+const (
+	FLAG_STATUS_BOOK       = 0
+	FLAG_STATUS_ARRIVE     = 1
+	FLAG_STATUS_NOT_ARRIVE = 2
+)
+
 type (
 	Guest struct {
 		ID    uuid.UUID `json:"id"`
